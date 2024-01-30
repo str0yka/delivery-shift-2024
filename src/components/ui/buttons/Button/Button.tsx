@@ -5,28 +5,95 @@ import * as React from 'react';
 import { cn } from '~/utils/helpers';
 
 const buttonVariants = cva(
-  'inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50',
+  [
+    'inline-flex items-center justify-center whitespace-nowrap text-base',
+    'focus-visible:outline-none',
+    'disabled:pointer-events-none',
+  ],
   {
     variants: {
       variant: {
-        default: 'bg-primary text-primary-foreground shadow hover:bg-primary/90',
-        destructive: 'bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90',
-        outline:
-          'border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground',
-        secondary: 'bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80',
-        ghost: 'hover:bg-accent hover:text-accent-foreground',
-        link: 'text-primary underline-offset-4 hover:underline',
+        contained: 'rounded-full px-8 py-4 font-semibold',
+        text: 'rounded-full px-8 py-4 font-semibold',
+        link: 'underline font-medium',
+        outline: 'rounded-full px-8 py-4 font-semibold',
       },
-      size: {
-        default: 'h-9 px-4 py-2',
-        sm: 'h-8 rounded-md px-3 text-xs',
-        lg: 'h-10 rounded-md px-8',
-        icon: 'h-9 w-9',
+      colour: {
+        primary: '',
+        secondary: '',
+        tertiary: '',
       },
     },
+    compoundVariants: [
+      {
+        colour: 'primary',
+        variant: 'contained',
+        class: [
+          'bg-brand text-invert',
+          'hover:bg-primary-hover',
+          'active:bg-brand active:outline active:outline-2 active:outline-indicator-focused-alternative',
+          'disabled:bg-brand-extralight',
+        ],
+      },
+      {
+        colour: 'primary',
+        variant: 'text',
+        class: [
+          'text-brand',
+          'hover:bg-primary-100',
+          'active:outline active:outline-2 active:outline-indicator-focused-alternative',
+          'disabled:bg-none disabled:text-brand-disabled disabled:outline disabled:outline-2 disabled:outline-indicator-focused-alternative',
+        ],
+      },
+      {
+        colour: 'primary',
+        variant: 'link',
+        class: [
+          'text-brand',
+          'hover:text-brand-hover',
+          'active:text-brand',
+          'disabled:text-brand-disabled',
+        ],
+      },
+      {
+        colour: 'secondary',
+        variant: 'outline',
+        class: [
+          'border border-light text-secondary',
+          'hover:bg-tertiary',
+          'active:bg-primary',
+          'disabled:text-tertiary disabled:border-extralight',
+        ],
+      },
+      {
+        colour: 'secondary',
+        variant: 'text',
+        class: [
+          'text-secondary',
+          'hover:bg-tertiary',
+          'active:bg-primary',
+          'disabled:bg-none disabled:text-tertiary',
+        ],
+      },
+      {
+        colour: 'secondary',
+        variant: 'link',
+        class: [
+          'text-secondary',
+          'hover:text-primary',
+          'active:text-secondary',
+          'disabled:text-tertiary',
+        ],
+      },
+      {
+        colour: 'tertiary',
+        variant: 'link',
+        class: ['text-quartenery', 'hover:text-tertiary'],
+      },
+    ],
     defaultVariants: {
-      variant: 'default',
-      size: 'default',
+      variant: 'contained',
+      colour: 'primary',
     },
   },
 );
@@ -38,11 +105,11 @@ export interface ButtonProps
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, ...props }, ref) => {
+  ({ className, colour, variant, asChild = false, ...props }, ref) => {
     const Comp = asChild ? Slot : 'button';
     return (
       <Comp
-        className={cn(buttonVariants({ variant, size, className }))}
+        className={cn(buttonVariants({ variant, colour, className }))}
         ref={ref}
         {...props}
       />

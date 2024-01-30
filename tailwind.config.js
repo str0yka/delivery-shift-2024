@@ -4,44 +4,59 @@ export default {
   theme: {
     extend: {
       colors: {
-        border: 'hsl(var(--border))',
-        input: 'hsl(var(--input))',
-        ring: 'hsl(var(--ring))',
-        background: 'hsl(var(--background))',
-        foreground: 'hsl(var(--foreground))',
         primary: {
-          DEFAULT: 'hsl(var(--primary))',
-          foreground: 'hsl(var(--primary-foreground))',
+          50: '#f9fafb',
+          100: '#f3f4f6',
+          200: '#cce0ff',
+          400: '#4c94ff',
+          500: '#1975ff',
+          700: '#0052cc',
         },
-        secondary: {
-          DEFAULT: 'hsl(var(--secondary))',
-          foreground: 'hsl(var(--secondary-foreground))',
-        },
-        destructive: {
-          DEFAULT: 'hsl(var(--destructive))',
-          foreground: 'hsl(var(--destructive-foreground))',
-        },
-        muted: {
-          DEFAULT: 'hsl(var(--muted))',
-          foreground: 'hsl(var(--muted-foreground))',
-        },
-        accent: {
-          DEFAULT: 'hsl(var(--accent))',
-          foreground: 'hsl(var(--accent-foreground))',
-        },
-        popover: {
-          DEFAULT: 'hsl(var(--popover))',
-          foreground: 'hsl(var(--popover-foreground))',
-        },
-        card: {
-          DEFAULT: 'hsl(var(--card))',
-          foreground: 'hsl(var(--card-foreground))',
+        indicator: {
+          focused: {
+            DEFAULT: '#4C94FF',
+            alternative: '#CCE0FF',
+          },
+          white: '#FFFFFF',
+          light: '#CED2DA',
+          medium: '#97A1AF',
+          normal: '#141C24',
+          error: '#F64C4C',
+          attention: '#FFB219',
+          positive: '#40BF7F',
         },
       },
-      borderRadius: {
-        lg: 'var(--radius)',
-        md: 'calc(var(--radius) - 2px)',
-        sm: 'calc(var(--radius) - 4px)',
+      textColor: {
+        invert: '#ffffff',
+        primary: '#141c24',
+        secondary: '#344051',
+        tertiary: '#637083',
+        quartenery: '#97a1af',
+        error: '#f64c4c',
+        brand: {
+          DEFAULT: '#1975ff',
+          hover: '#0052CC',
+          disabled: '#cce0ff',
+        },
+      },
+      backgroundColor: {
+        primary: {
+          DEFAULT: '#ffffff',
+          pressed: '#1975ff',
+          hover: '#0052cc',
+        },
+        secondary: '#f3f4f6',
+        tertiary: '#f9fafb',
+        disabled: '#f3f4f6',
+        brand: {
+          DEFAULT: '#1975ff',
+          extralight: '#cce0ff',
+        },
+      },
+      borderColor: {
+        extralight: '#E3E5E5',
+        light: '#CED2DA',
+        medium: '#97A1AF',
       },
     },
   },
