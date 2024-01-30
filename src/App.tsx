@@ -1,51 +1,28 @@
-import { Button } from '~/components/ui';
+import { Input } from '~/components/ui';
 
 export const App = () => (
   <>
-    <Button>Button</Button>
-    <Button disabled>Button</Button>
-    <Button variant="text">Button</Button>
-    <Button
-      variant="text"
+    <Input
+      label="Label"
+      placeholder="Input Default"
+    />
+    <Input
+      placeholder="Input Default"
       disabled
-    >
-      Button
-    </Button>
-    <Button variant="link">Button</Button>
-    <Button
-      variant="link"
-      disabled
-    >
-      Button
-    </Button>
-    <Button
-      colour="secondary"
-      variant="outline"
-    >
-      Button
-    </Button>
-    <Button
-      colour="secondary"
-      variant="outline"
-      disabled
-    >
-      Button
-    </Button>
-    <Button
-      colour="secondary"
-      variant="text"
-    >
-      Button
-    </Button>
-    <Button
-      colour="secondary"
-      variant="text"
-      disabled
-    >
-      Button
-    </Button>
+    />
+    <Input
+      placeholder="Input Default"
+      error
+    />
+    <Input
+      label="Label"
+      helperText="Error message goes here"
+      placeholder="Input Default"
+      error
+      value="Input Default"
+    />
     <button
-      className="border-light border"
+      className="border-light text-quartenery border"
       type="button"
     >
       123
