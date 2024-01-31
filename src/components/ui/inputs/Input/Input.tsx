@@ -10,8 +10,8 @@ export interface InputProps extends React.ComponentProps<'input'> {
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   ({ label, helperText, error, className, type, ...props }, ref) => (
-    <>
-      <p className="mb-1.5 text-sm">{label}</p>
+    <div>
+      {label && <p className="mb-1.5 text-sm">{label}</p>}
       <input
         {...props}
         type={type}
@@ -21,13 +21,16 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           'hover:border-medium',
           'disabled:cursor-not-allowed disabled:border-light disabled:bg-disabled',
           'disabled:placeholder:text-tertiary',
-          !error && 'focus:outline focus:outline-2 focus:outline-indicator-focused',
+          !error &&
+            'focus:outline focus:outline-2 focus:-outline-offset-1 focus:outline-indicator-focused',
           error && 'outline outline-2 outline-indicator-error',
           className,
         )}
         ref={ref}
       />
-      <p className={cn('mt-1 text-sm text-tertiary', error && 'text-error')}>{helperText}</p>
-    </>
+      {helperText && (
+        <p className={cn('mt-1 text-sm text-tertiary', error && 'text-error')}>{helperText}</p>
+      )}
+    </div>
   ),
 );

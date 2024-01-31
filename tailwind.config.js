@@ -10,6 +10,9 @@ export default {
         lg: '960px',
       },
     },
+    backgroundImage: {
+      'home-texture': "url('/images/home-texture.jpg')",
+    },
     extend: {
       colors: {
         primary: {
