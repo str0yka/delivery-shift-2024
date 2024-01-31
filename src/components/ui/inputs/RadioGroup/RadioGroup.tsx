@@ -10,8 +10,8 @@ const RadioGroupRoot = forwardRef<
   React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Root>
 >(({ className, ...props }, ref) => (
   <RadioGroupPrimitive.Root
-    className={cn('grid gap-4', className)}
     {...props}
+    className={cn('grid gap-4', className)}
     ref={ref}
   />
 ));
@@ -29,6 +29,7 @@ const RadioGroupItem = forwardRef<
       htmlFor={radioButtonId}
     >
       <RadioGroupPrimitive.Item
+        {...props}
         id={radioButtonId}
         ref={ref}
         className={cn(
@@ -41,7 +42,6 @@ const RadioGroupItem = forwardRef<
           'data-[state=checked]:outline-primary-400 data-[state=checked]:active:text-brand data-[state=checked]:active:outline data-[state=checked]:active:outline-1',
           className,
         )}
-        {...props}
       >
         <RadioGroupPrimitive.Indicator className="flex items-center justify-center">
           <IconCheck className="h-4 w-4 text-invert" />
