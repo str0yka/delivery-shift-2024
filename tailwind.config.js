@@ -58,6 +58,11 @@ export default {
         light: '#CED2DA',
         medium: '#97A1AF',
       },
+      outlineColor: {
+        extralight: '#E3E5E5',
+        light: '#CED2DA',
+        medium: '#97A1AF',
+      },
     },
   },
   plugins: [],
