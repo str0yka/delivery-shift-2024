@@ -85,6 +85,8 @@ export const AuthorizationPage = () => {
                     value: true,
                     message: 'Поле является обязательным',
                   },
+                  min: 0,
+                  max: 999999,
                   validate: (value) => {
                     if (value.toString().length !== 6) return 'Код должен содержать 6 цифр';
                     return true;

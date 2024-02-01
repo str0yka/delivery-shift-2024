@@ -3,14 +3,11 @@ import { useQuery } from 'react-query';
 import type { UseQueryOptions } from 'react-query';
 
 import { getUsersSession } from '../../requests';
-import type {
-  GetUsersSessionFailureResponse,
-  GetUsersSessionSuccessResponse,
-} from '../../requests';
+import type { GetUsersSessionSuccessResponse } from '../../requests';
 
 interface UseUsersSessionQueryParams {
   config?: AxiosRequestConfig<never>;
-  options?: UseQueryOptions<GetUsersSessionSuccessResponse, GetUsersSessionFailureResponse>;
+  options?: UseQueryOptions<GetUsersSessionSuccessResponse>;
 }
 
 export const useUsersSessionQuery = ({ config, options }: UseUsersSessionQueryParams) =>

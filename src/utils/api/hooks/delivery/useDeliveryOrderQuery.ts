@@ -3,20 +3,19 @@ import { useQuery } from 'react-query';
 import type { UseQueryOptions } from 'react-query';
 
 import { getDeliveryOrder } from '../../requests';
-import type {
-  GetDeliveryOrderSuccessResponse,
-  GetDeliveryOrderFailureResponse,
-} from '../../requests';
+import type { GetDeliveryOrderSuccessResponse } from '../../requests';
 
 interface UseDeliveryOrderQueryParams {
-  orderId: number;
+  data: {
+    orderId: number;
+  };
   config?: AxiosRequestConfig<never>;
-  options?: UseQueryOptions<GetDeliveryOrderSuccessResponse, GetDeliveryOrderFailureResponse>;
+  options?: UseQueryOptions<GetDeliveryOrderSuccessResponse>;
 }
 
-export const useDeliveryOrderQuery = ({ orderId, config, options }: UseDeliveryOrderQueryParams) =>
+export const useDeliveryOrderQuery = ({ data, config, options }: UseDeliveryOrderQueryParams) =>
   useQuery({
     queryKey: ['GetDeliveryOrder'],
     ...options,
-    queryFn: () => getDeliveryOrder(orderId, config),
+    queryFn: () => getDeliveryOrder(data.orderId, config),
   });

@@ -2,15 +2,7 @@ import type { AxiosRequestConfig } from 'axios';
 
 import { api } from '../../instance';
 
-export type GetDeliveryOrderSuccessResponse = {
-  success: true;
-  order: DeliveryOrder[];
-};
-
-export type GetDeliveryOrderFailureResponse = {
-  success: false;
-  reason: string;
-};
+export type GetDeliveryOrderSuccessResponse = ApiSuccessResponse<{ order: DeliveryOrder[] }>;
 
 export const getDeliveryOrder = async (orderId: number, config?: AxiosRequestConfig<never>) =>
   api

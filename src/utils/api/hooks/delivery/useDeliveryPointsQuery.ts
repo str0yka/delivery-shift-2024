@@ -3,14 +3,11 @@ import { useQuery } from 'react-query';
 import type { UseQueryOptions } from 'react-query';
 
 import { getDeliveryPoints } from '../../requests';
-import type {
-  GetDeliveryPointsSuccessResponse,
-  GetDeliveryPointsFailureResponse,
-} from '../../requests';
+import type { GetDeliveryPointsSuccessResponse } from '../../requests';
 
 interface UseDeliveryPointsQueryParams {
   config?: AxiosRequestConfig<never>;
-  options?: UseQueryOptions<GetDeliveryPointsSuccessResponse, GetDeliveryPointsFailureResponse>;
+  options?: UseQueryOptions<GetDeliveryPointsSuccessResponse>;
 }
 
 export const useDeliveryPointsQuery = ({ config, options }: UseDeliveryPointsQueryParams) =>

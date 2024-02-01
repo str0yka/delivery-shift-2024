@@ -3,16 +3,12 @@ import { useMutation } from 'react-query';
 import type { UseMutationOptions } from 'react-query';
 
 import { postDeliveryCalc } from '../../requests';
-import type {
-  PostDeliveryCalcFailureResponse,
-  PostDeliveryCalcRequestBody,
-  PostDeliveryCalcSuccessResponse,
-} from '../../requests';
+import type { PostDeliveryCalcRequestBody, PostDeliveryCalcSuccessResponse } from '../../requests';
 
 export const useDeliveryCalcMutation = (
   options?: UseMutationOptions<
     PostDeliveryCalcSuccessResponse,
-    PostDeliveryCalcFailureResponse,
+    unknown,
     {
       data: PostDeliveryCalcRequestBody;
       config: AxiosRequestConfig<PostDeliveryCalcRequestBody>;

@@ -6,11 +6,7 @@ export interface PostAuthOtpRequestBody {
   phone: string;
 }
 
-export interface PostAuthOtpResponse {
-  success: boolean;
-  reason?: string;
-  retryDelay: number;
-}
+export type PostAuthOtpResponse = ApiSuccessResponse<{ retryDelay: number }>;
 
 export const postAuthOtp = async (
   data: PostAuthOtpRequestBody,

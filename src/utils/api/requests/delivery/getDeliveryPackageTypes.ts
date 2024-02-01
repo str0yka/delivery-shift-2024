@@ -2,15 +2,9 @@ import type { AxiosRequestConfig } from 'axios';
 
 import { api } from '../../instance';
 
-export type GetDeliveryPackageTypesSuccessResponse = {
-  success: true;
+export type GetDeliveryPackageTypesSuccessResponse = ApiSuccessResponse<{
   packages: DeliveryPackageType[];
-};
-
-export type GetDeliveryPackageTypesFailureResponse = {
-  success: false;
-  reason: string;
-};
+}>;
 
 export const getDeliveryPackageTypes = async (config?: AxiosRequestConfig<never>) =>
   api

@@ -3,16 +3,12 @@ import { useMutation } from 'react-query';
 import type { UseMutationOptions } from 'react-query';
 
 import { postUsersSignin } from '../../requests';
-import type {
-  PostUsersSigninFailureResponse,
-  PostUsersSigninRequestBody,
-  PostUsersSigninSuccessResponse,
-} from '../../requests';
+import type { PostUsersSigninRequestBody, PostUsersSigninSuccessResponse } from '../../requests';
 
 export const useUsersSigninMutation = (
   options?: UseMutationOptions<
     PostUsersSigninSuccessResponse,
-    PostUsersSigninFailureResponse,
+    ApiFailureResponse,
     {
       data: PostUsersSigninRequestBody;
       config?: AxiosRequestConfig<PostUsersSigninRequestBody>;

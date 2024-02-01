@@ -7,16 +7,10 @@ export interface PostUsersSigninRequestBody {
   code: number;
 }
 
-export type PostUsersSigninSuccessResponse = {
-  success: true;
+export type PostUsersSigninSuccessResponse = ApiSuccessResponse<{
   user: User;
   token: string;
-};
-
-export type PostUsersSigninFailureResponse = {
-  success: false;
-  reason: string;
-};
+}>;
 
 export const postUsersSignin = async (
   data: PostUsersSigninRequestBody,

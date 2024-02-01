@@ -3,17 +3,11 @@ import { useQuery } from 'react-query';
 import type { UseQueryOptions } from 'react-query';
 
 import { getDeliveryPackageTypes } from '../../requests';
-import type {
-  GetDeliveryPackageTypesSuccessResponse,
-  GetDeliveryPackageTypesFailureResponse,
-} from '../../requests';
+import type { GetDeliveryPackageTypesSuccessResponse } from '../../requests';
 
 interface UseDeliveryPackageTypesQueryParams {
   config?: AxiosRequestConfig<never>;
-  options?: UseQueryOptions<
-    GetDeliveryPackageTypesSuccessResponse,
-    GetDeliveryPackageTypesFailureResponse
-  >;
+  options?: UseQueryOptions<GetDeliveryPackageTypesSuccessResponse>;
 }
 
 export const useDeliveryPackageTypesQuery = ({

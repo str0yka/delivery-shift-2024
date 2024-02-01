@@ -6,10 +6,7 @@ export interface PutDeliveryOrdersCancelRequestBody {
   orderId: string;
 }
 
-export interface PutDeliveryOrdersCancelResponse {
-  success: boolean;
-  reason?: string;
-}
+export type PutDeliveryOrdersCancelResponse = ApiSuccessResponse;
 
 export const putDeliveryOrdersCancel = async (
   data: PutDeliveryOrdersCancelRequestBody,

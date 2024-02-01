@@ -49,15 +49,7 @@ export interface PostDeliveryOrderRequestBody {
   };
 }
 
-export type PostDeliveryOrderSuccessResponse = {
-  success: true;
-  order: DeliveryOrder;
-};
-
-export type PostDeliveryOrderFailureResponse = {
-  success: false;
-  reason: string;
-};
+export type PostDeliveryOrderSuccessResponse = ApiSuccessResponse<{ order: DeliveryOrder }>;
 
 export const postDeliveryOrder = async (
   data: PostDeliveryOrderRequestBody,

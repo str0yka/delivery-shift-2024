@@ -7,10 +7,7 @@ export interface PatchUsersProfileRequestBody {
   phone: string;
 }
 
-export interface PatchUsersProfileResponse {
-  success: boolean;
-  reason?: string;
-}
+export type PatchUsersProfileResponse = ApiSuccessResponse;
 
 export const patchUsersProfile = async (
   data: PatchUsersProfileRequestBody,

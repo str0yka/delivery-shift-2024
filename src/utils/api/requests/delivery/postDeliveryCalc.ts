@@ -19,15 +19,7 @@ export interface PostDeliveryCalcRequestBody {
   };
 }
 
-export type PostDeliveryCalcSuccessResponse = {
-  success: true;
-  options: DeliveryOption[];
-};
-
-export type PostDeliveryCalcFailureResponse = {
-  success: false;
-  reason: string;
-};
+export type PostDeliveryCalcSuccessResponse = ApiSuccessResponse<{ options: DeliveryOption[] }>;
 
 export const postDeliveryCalc = async (
   data: PostDeliveryCalcRequestBody,
