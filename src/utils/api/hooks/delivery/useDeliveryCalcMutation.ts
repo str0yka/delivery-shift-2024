@@ -2,12 +2,12 @@ import type { AxiosRequestConfig } from 'axios';
 import { useMutation } from 'react-query';
 import type { UseMutationOptions } from 'react-query';
 
-import { postDeliveryCalc } from '../requests';
+import { postDeliveryCalc } from '../../requests';
 import type {
   PostDeliveryCalcFailureResponse,
   PostDeliveryCalcRequestBody,
   PostDeliveryCalcSuccessResponse,
-} from '../requests';
+} from '../../requests';
 
 interface UseDeliveryCalcMutationParams {
   data: PostDeliveryCalcRequestBody;

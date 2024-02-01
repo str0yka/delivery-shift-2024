@@ -2,8 +2,8 @@ import type { AxiosRequestConfig } from 'axios';
 import { useMutation } from 'react-query';
 import type { UseMutationOptions } from 'react-query';
 
-import { patchUsersProfile } from '../requests';
-import type { PatchUsersProfileRequestBody, PatchUsersProfileResponse } from '../requests';
+import { patchUsersProfile } from '../../requests';
+import type { PatchUsersProfileRequestBody, PatchUsersProfileResponse } from '../../requests';
 
 interface UseUsersProfileMutationParams {
   data: PatchUsersProfileRequestBody;

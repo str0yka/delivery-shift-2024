@@ -2,11 +2,11 @@ import type { AxiosRequestConfig } from 'axios';
 import { useQuery } from 'react-query';
 import type { UseQueryOptions } from 'react-query';
 
-import { getDeliveryPackageTypes } from '../requests';
+import { getDeliveryPackageTypes } from '../../requests';
 import type {
   GetDeliveryPackageTypesSuccessResponse,
   GetDeliveryPackageTypesFailureResponse,
-} from '../requests';
+} from '../../requests';
 
 interface UseDeliveryPackageTypesQueryParams {
   config?: AxiosRequestConfig<never>;

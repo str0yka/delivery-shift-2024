@@ -2,11 +2,11 @@ import type { AxiosRequestConfig } from 'axios';
 import { useMutation } from 'react-query';
 import type { UseMutationOptions } from 'react-query';
 
-import { putDeliveryOrdersCancel } from '../requests';
+import { putDeliveryOrdersCancel } from '../../requests';
 import type {
   PutDeliveryOrdersCancelRequestBody,
   PutDeliveryOrdersCancelResponse,
-} from '../requests';
+} from '../../requests';
 
 interface UseDeliveryOrdersCancelMutationParams {
   data: PutDeliveryOrdersCancelRequestBody;

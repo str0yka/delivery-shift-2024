@@ -1,6 +1,6 @@
 import type { AxiosRequestConfig } from 'axios';
 
-import { api } from '../instance';
+import { api } from '../../instance';
 
 export type GetDeliveryPackageTypesSuccessResponse = {
   success: true;

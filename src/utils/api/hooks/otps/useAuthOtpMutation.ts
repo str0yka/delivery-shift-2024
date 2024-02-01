@@ -2,8 +2,8 @@ import type { AxiosRequestConfig } from 'axios';
 import { useMutation } from 'react-query';
 import type { UseMutationOptions } from 'react-query';
 
-import { postAuthOtp } from '../requests';
-import type { PostAuthOtpRequestBody, PostAuthOtpResponse } from '../requests';
+import { postAuthOtp } from '../../requests';
+import type { PostAuthOtpRequestBody, PostAuthOtpResponse } from '../../requests';
 
 interface UseAuthOtpMutationParams {
   data: PostAuthOtpRequestBody;

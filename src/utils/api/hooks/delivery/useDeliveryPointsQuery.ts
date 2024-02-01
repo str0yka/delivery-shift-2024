@@ -2,11 +2,11 @@ import type { AxiosRequestConfig } from 'axios';
 import { useQuery } from 'react-query';
 import type { UseQueryOptions } from 'react-query';
 
-import { getDeliveryPoints } from '../requests';
+import { getDeliveryPoints } from '../../requests';
 import type {
   GetDeliveryPointsSuccessResponse,
   GetDeliveryPointsFailureResponse,
-} from '../requests';
+} from '../../requests';
 
 interface UseDeliveryPointsQueryParams {
   config?: AxiosRequestConfig<never>;

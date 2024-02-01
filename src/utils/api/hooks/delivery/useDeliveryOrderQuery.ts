@@ -2,8 +2,11 @@ import type { AxiosRequestConfig } from 'axios';
 import { useQuery } from 'react-query';
 import type { UseQueryOptions } from 'react-query';
 
-import { getDeliveryOrder } from '../requests';
-import type { GetDeliveryOrderSuccessResponse, GetDeliveryOrderFailureResponse } from '../requests';
+import { getDeliveryOrder } from '../../requests';
+import type {
+  GetDeliveryOrderSuccessResponse,
+  GetDeliveryOrderFailureResponse,
+} from '../../requests';
 
 interface UseDeliveryOrderQueryParams {
   orderId: number;
