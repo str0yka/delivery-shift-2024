@@ -1,7 +1,7 @@
 import { forwardRef } from 'react';
 
-export const IconCheck = forwardRef<SVGSVGElement, IconProps>(
-  ({ color = 'currentColor', ...props }, forwardedRef) => (
+export const IconCheck = forwardRef<SVGSVGElement, React.ComponentProps<'svg'>>(
+  ({ color = 'currentColor', ...props }, ref) => (
     <svg
       width="20"
       height="20"
@@ -9,7 +9,7 @@ export const IconCheck = forwardRef<SVGSVGElement, IconProps>(
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       {...props}
-      ref={forwardedRef}
+      ref={ref}
     >
       <path
         d="M4.66669 8.66667L6.66669 10.6667L11.3334 6"
