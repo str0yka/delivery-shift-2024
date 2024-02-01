@@ -9,20 +9,19 @@ import type {
   PostDeliveryCalcSuccessResponse,
 } from '../../requests';
 
-interface UseDeliveryCalcMutationParams {
-  data: PostDeliveryCalcRequestBody;
-  config?: AxiosRequestConfig<PostDeliveryCalcRequestBody>;
+export const useDeliveryCalcMutation = (
   options?: UseMutationOptions<
     PostDeliveryCalcSuccessResponse,
     PostDeliveryCalcFailureResponse,
-    void,
+    {
+      data: PostDeliveryCalcRequestBody;
+      config: AxiosRequestConfig<PostDeliveryCalcRequestBody>;
+    },
     unknown
-  >;
-}
-
-export const useDeliveryCalcMutation = ({ data, config, options }: UseDeliveryCalcMutationParams) =>
+  >,
+) =>
   useMutation({
     mutationKey: ['PostDeliveryCalc'],
     ...options,
-    mutationFn: () => postDeliveryCalc(data, config),
+    mutationFn: ({ data, config }) => postDeliveryCalc(data, config),
   });

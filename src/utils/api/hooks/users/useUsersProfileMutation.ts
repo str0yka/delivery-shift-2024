@@ -5,15 +5,19 @@ import type { UseMutationOptions } from 'react-query';
 import { patchUsersProfile } from '../../requests';
 import type { PatchUsersProfileRequestBody, PatchUsersProfileResponse } from '../../requests';
 
-interface UseUsersProfileMutationParams {
-  data: PatchUsersProfileRequestBody;
-  config?: AxiosRequestConfig<PatchUsersProfileRequestBody>;
-  options?: UseMutationOptions<PatchUsersProfileResponse, unknown, void, unknown>;
-}
-
-export const useUsersProfileMutation = ({ data, config, options }: UseUsersProfileMutationParams) =>
+export const useUsersProfileMutation = (
+  options?: UseMutationOptions<
+    PatchUsersProfileResponse,
+    unknown,
+    {
+      data: PatchUsersProfileRequestBody;
+      config?: AxiosRequestConfig<PatchUsersProfileRequestBody>;
+    },
+    unknown
+  >,
+) =>
   useMutation({
     mutationKey: ['PatchUsersProfile'],
     ...options,
-    mutationFn: () => patchUsersProfile(data, config),
+    mutationFn: ({ data, config }) => patchUsersProfile(data, config),
   });

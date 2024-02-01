@@ -9,20 +9,19 @@ import type {
   PostUsersSigninSuccessResponse,
 } from '../../requests';
 
-interface UseUsersSigninMutationParams {
-  data: PostUsersSigninRequestBody;
-  config?: AxiosRequestConfig<PostUsersSigninRequestBody>;
+export const useUsersSigninMutation = (
   options?: UseMutationOptions<
     PostUsersSigninSuccessResponse,
     PostUsersSigninFailureResponse,
-    void,
+    {
+      data: PostUsersSigninRequestBody;
+      config?: AxiosRequestConfig<PostUsersSigninRequestBody>;
+    },
     unknown
-  >;
-}
-
-export const useUsersSigninMutation = ({ data, config, options }: UseUsersSigninMutationParams) =>
+  >,
+) =>
   useMutation({
     mutationKey: ['PostUsersSignin'],
     ...options,
-    mutationFn: () => postUsersSignin(data, config),
+    mutationFn: ({ data, config }) => postUsersSignin(data, config),
   });

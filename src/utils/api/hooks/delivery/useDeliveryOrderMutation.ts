@@ -9,24 +9,19 @@ import type {
   PostDeliveryOrderSuccessResponse,
 } from '../../requests';
 
-interface UseDeliveryOrderMutationParams {
-  data: PostDeliveryOrderRequestBody;
-  config?: AxiosRequestConfig<PostDeliveryOrderRequestBody>;
+export const useDeliveryOrderMutation = (
   options?: UseMutationOptions<
     PostDeliveryOrderSuccessResponse,
     PostDeliveryOrderFailureResponse,
-    void,
+    {
+      data: PostDeliveryOrderRequestBody;
+      config?: AxiosRequestConfig<PostDeliveryOrderRequestBody>;
+    },
     unknown
-  >;
-}
-
-export const useDeliveryOrderMutation = ({
-  data,
-  config,
-  options,
-}: UseDeliveryOrderMutationParams) =>
+  >,
+) =>
   useMutation({
     mutationKey: ['PostDeliveryOrder'],
     ...options,
-    mutationFn: () => postDeliveryOrder(data, config),
+    mutationFn: ({ data, config }) => postDeliveryOrder(data, config),
   });

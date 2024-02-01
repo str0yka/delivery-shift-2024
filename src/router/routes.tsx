@@ -1,7 +1,7 @@
 import { Navigate, RouteObject } from 'react-router-dom';
 
 import { Layout } from '~/components';
-import { ProfilePage, AuthorizationPage, HistoryPage, HomePage } from '~/pages';
+import { ProfilePage, AuthorizationPage, HistoryPage, HomePage, LogoutPage } from '~/pages';
 import { ROUTE } from '~/utils/constants';
 
 export const privateRoutes: RouteObject[] = [
@@ -19,12 +19,38 @@ export const privateRoutes: RouteObject[] = [
         element: <ProfilePage />,
       },
       {
+        path: ROUTE.HISTORY,
+        element: <HistoryPage />,
+      },
+      {
+        path: ROUTE.LOGOUT,
+        element: <LogoutPage />,
+      },
+      {
+        path: '*',
+        element: <Navigate to={ROUTE.HOME} />,
+      },
+    ],
+  },
+];
+
+export const publicRoutes: RouteObject[] = [
+  {
+    path: ROUTE.HOME,
+    element: <Layout />,
+    errorElement: <Navigate to={ROUTE.AUTHORIZATION} />,
+    children: [
+      {
+        index: true,
+        element: <Navigate to={ROUTE.AUTHORIZATION} />,
+      },
+      {
         path: ROUTE.AUTHORIZATION,
         element: <AuthorizationPage />,
       },
       {
-        path: ROUTE.HISTORY,
-        element: <HistoryPage />,
+        path: '*',
+        element: <Navigate to={ROUTE.AUTHORIZATION} />,
       },
     ],
   },

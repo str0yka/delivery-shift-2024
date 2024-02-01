@@ -8,19 +8,19 @@ import type {
   PutDeliveryOrdersCancelResponse,
 } from '../../requests';
 
-interface UseDeliveryOrdersCancelMutationParams {
-  data: PutDeliveryOrdersCancelRequestBody;
-  config?: AxiosRequestConfig<PutDeliveryOrdersCancelRequestBody>;
-  options?: UseMutationOptions<PutDeliveryOrdersCancelResponse, unknown, void, unknown>;
-}
-
-export const useDeliveryOrdersCancelMutation = ({
-  data,
-  config,
-  options,
-}: UseDeliveryOrdersCancelMutationParams) =>
+export const useDeliveryOrdersCancelMutation = (
+  options?: UseMutationOptions<
+    PutDeliveryOrdersCancelResponse,
+    unknown,
+    {
+      data: PutDeliveryOrdersCancelRequestBody;
+      config?: AxiosRequestConfig<PutDeliveryOrdersCancelRequestBody>;
+    },
+    unknown
+  >,
+) =>
   useMutation({
     mutationKey: ['PutDeliveryOrdersCancel'],
     ...options,
-    mutationFn: () => putDeliveryOrdersCancel(data, config),
+    mutationFn: ({ data, config }) => putDeliveryOrdersCancel(data, config),
   });
