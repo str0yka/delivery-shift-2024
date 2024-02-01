@@ -1,25 +1,25 @@
-import { AxiosRequestConfig } from 'axios';
+import type { AxiosRequestConfig } from 'axios';
 
 import { api } from '../instance';
 
-interface PostUsersSigninRequestBody {
+export interface PostUsersSigninRequestBody {
   phone: string;
   code: number;
 }
 
-type PostUsersSigninResponse =
-  | {
-      success: false;
-      reason: string;
-    }
-  | {
-      success: true;
-      user: User;
-      token: string;
-    };
+export type PostUsersSigninSuccessResponse = {
+  success: true;
+  user: User;
+  token: string;
+};
+
+export type PostUsersSigninFailureResponse = {
+  success: false;
+  reason: string;
+};
 
 export const postUsersSignin = async (
   data: PostUsersSigninRequestBody,
   config?: AxiosRequestConfig<PostUsersSigninRequestBody>,
 ) =>
-  api.post<PostUsersSigninResponse>(`${import.meta.env.VITE_API_URL}/users/signin`, data, config);
+  api.post<PostUsersSigninSuccessResponse>('/users/signin', data, config).then((res) => res.data);

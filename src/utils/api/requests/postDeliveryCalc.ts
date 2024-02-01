@@ -1,8 +1,8 @@
-import { AxiosRequestConfig } from 'axios';
+import type { AxiosRequestConfig } from 'axios';
 
 import { api } from '../instance';
 
-interface PostDeliveryCalcRequestBody {
+export interface PostDeliveryCalcRequestBody {
   package: {
     length: number;
     width: number;
@@ -19,18 +19,18 @@ interface PostDeliveryCalcRequestBody {
   };
 }
 
-type PostDeliveryCalcResponse =
-  | {
-      success: false;
-      reason: string;
-    }
-  | {
-      success: true;
-      options: DeliveryOption[];
-    };
+export type PostDeliveryCalcSuccessResponse = {
+  success: true;
+  options: DeliveryOption[];
+};
+
+export type PostDeliveryCalcFailureResponse = {
+  success: false;
+  reason: string;
+};
 
 export const postDeliveryCalc = async (
   data: PostDeliveryCalcRequestBody,
   config?: AxiosRequestConfig<PostDeliveryCalcRequestBody>,
 ) =>
-  api.post<PostDeliveryCalcResponse>(`${import.meta.env.VITE_API_URL}/delivery/calc`, data, config);
+  api.post<PostDeliveryCalcSuccessResponse>('/delivery/calc', data, config).then((res) => res.data);

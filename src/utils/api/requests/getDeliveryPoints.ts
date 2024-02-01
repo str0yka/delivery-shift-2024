@@ -1,16 +1,16 @@
-import { AxiosRequestConfig } from 'axios';
+import type { AxiosRequestConfig } from 'axios';
 
 import { api } from '../instance';
 
-type GetDeliveryPointsResponse =
-  | {
-      success: false;
-      reason: string;
-    }
-  | {
-      success: true;
-      points: DeliveryPoint[];
-    };
+export type GetDeliveryPointsSuccessResponse = {
+  success: true;
+  points: DeliveryPoint[];
+};
+
+export type GetDeliveryPointsFailureResponse = {
+  success: false;
+  reason: string;
+};
 
 export const getDeliveryPoints = async (config?: AxiosRequestConfig<never>) =>
-  api.get<GetDeliveryPointsResponse>(`${import.meta.env.VITE_API_URL}/delivery/points`, config);
+  api.get<GetDeliveryPointsSuccessResponse>('/delivery/points', config).then((res) => res.data);

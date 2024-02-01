@@ -1,8 +1,8 @@
-import { AxiosRequestConfig } from 'axios';
+import type { AxiosRequestConfig } from 'axios';
 
 import { api } from '../instance';
 
-interface PostDeliveryOrderRequestBody {
+export interface PostDeliveryOrderRequestBody {
   senderPoint: {
     id: string;
     name: string;
@@ -49,22 +49,20 @@ interface PostDeliveryOrderRequestBody {
   };
 }
 
-type PostDeliveryOrderResponse =
-  | {
-      success: false;
-      reason: string;
-    }
-  | {
-      success: true;
-      order: DeliveryOrder;
-    };
+export type PostDeliveryOrderSuccessResponse = {
+  success: true;
+  order: DeliveryOrder;
+};
+
+export type PostDeliveryOrderFailureResponse = {
+  success: false;
+  reason: string;
+};
 
 export const postDeliveryOrder = async (
   data: PostDeliveryOrderRequestBody,
   config?: AxiosRequestConfig<PostDeliveryOrderRequestBody>,
 ) =>
-  api.post<PostDeliveryOrderResponse>(
-    `${import.meta.env.VITE_API_URL}/delivery/order`,
-    data,
-    config,
-  );
+  api
+    .post<PostDeliveryOrderSuccessResponse>('/delivery/order', data, config)
+    .then((res) => res.data);

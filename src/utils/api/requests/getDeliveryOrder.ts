@@ -1,22 +1,18 @@
-import { AxiosRequestConfig } from 'axios';
+import type { AxiosRequestConfig } from 'axios';
 
 import { api } from '../instance';
 
-type GetDeliveryOrderResponse =
-  | {
-      success: false;
-      reason: string;
-    }
-  | {
-      success: true;
-      order: DeliveryOrder[];
-    };
+export type GetDeliveryOrderSuccessResponse = {
+  success: true;
+  order: DeliveryOrder[];
+};
 
-export const getDeliveryPackageTypes = async (
-  orderId: number,
-  config?: AxiosRequestConfig<never>,
-) =>
-  api.get<GetDeliveryOrderResponse>(
-    `${import.meta.env.VITE_API_URL}/delivery/orders/${orderId}`,
-    config,
-  );
+export type GetDeliveryOrderFailureResponse = {
+  success: false;
+  reason: string;
+};
+
+export const getDeliveryOrder = async (orderId: number, config?: AxiosRequestConfig<never>) =>
+  api
+    .get<GetDeliveryOrderSuccessResponse>(`/delivery/order/${orderId}`, config)
+    .then((res) => res.data);

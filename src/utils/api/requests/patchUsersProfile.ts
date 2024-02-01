@@ -1,13 +1,13 @@
-import { AxiosRequestConfig } from 'axios';
+import type { AxiosRequestConfig } from 'axios';
 
 import { api } from '../instance';
 
-interface PatchUsersProfileRequestBody {
+export interface PatchUsersProfileRequestBody {
   profile: Omit<NonNullable<User>, 'phone'>;
   phone: string;
 }
 
-interface PatchUsersProfileResponse {
+export interface PatchUsersProfileResponse {
   success: boolean;
   reason?: string;
 }
@@ -15,9 +15,4 @@ interface PatchUsersProfileResponse {
 export const patchUsersProfile = async (
   data: PatchUsersProfileRequestBody,
   config?: AxiosRequestConfig<PatchUsersProfileRequestBody>,
-) =>
-  api.patch<PatchUsersProfileResponse>(
-    `${import.meta.env.VITE_API_URL}/users/profile`,
-    data,
-    config,
-  );
+) => api.patch<PatchUsersProfileResponse>('/users/profile', data, config).then((res) => res.data);

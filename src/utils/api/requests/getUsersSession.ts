@@ -1,16 +1,16 @@
-import { AxiosRequestConfig } from 'axios';
+import type { AxiosRequestConfig } from 'axios';
 
 import { api } from '../instance';
 
-type GetUsersSessionResponse =
-  | {
-      success: false;
-      reason: string;
-    }
-  | {
-      success: true;
-      user: User;
-    };
+export type GetUsersSessionSuccessResponse = {
+  success: true;
+  user: User;
+};
+
+export type GetUsersSessionFailureResponse = {
+  success: false;
+  reason: string;
+};
 
 export const getUsersSession = async (config?: AxiosRequestConfig<never>) =>
-  api.get<GetUsersSessionResponse>(`${import.meta.env.VITE_API_URL}/users/session`, config);
+  api.get<GetUsersSessionSuccessResponse>('/users/session', config).then((res) => res.data);

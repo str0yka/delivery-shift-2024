@@ -1,12 +1,12 @@
-import { AxiosRequestConfig } from 'axios';
+import type { AxiosRequestConfig } from 'axios';
 
 import { api } from '../instance';
 
-interface PostAuthOtpRequestBody {
+export interface PostAuthOtpRequestBody {
   phone: string;
 }
 
-interface PostAuthOtpResponse {
+export interface PostAuthOtpResponse {
   success: boolean;
   reason?: string;
   retryDelay: number;
@@ -15,4 +15,4 @@ interface PostAuthOtpResponse {
 export const postAuthOtp = async (
   data: PostAuthOtpRequestBody,
   config?: AxiosRequestConfig<PostAuthOtpRequestBody>,
-) => api.post<PostAuthOtpResponse>(`${import.meta.env.VITE_API_URL}/auth/otp`, data, config);
+) => api.post<PostAuthOtpResponse>('/auth/otp', data, config).then((res) => res.data);
