@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
@@ -17,9 +18,15 @@ export const AuthorizationPage = () => {
   const navigate = useNavigate();
   const { setUser } = useUser();
 
+  const [retryDelay, setRetryDelay] = useState<number | null>(null);
+
   const authorizationForm = useForm<AuthorizationFormValues>();
 
-  const authOtpMutation = useAuthOtpMutation();
+  const authOtpMutation = useAuthOtpMutation({
+    onSuccess: (data) => {
+      setRetryDelay(data.retryDelay);
+    },
+  });
   const usersSigninMutation = useUsersSigninMutation({
     onSuccess: (data) => {
       localStorage.setItem(LOCAL_STORAGE_KEY.TOKEN, data.token);
@@ -97,7 +104,18 @@ export const AuthorizationPage = () => {
         >
           {authOtpMutation.data?.success ? 'Войти' : 'Продолжить'}
         </Button>
-        {authOtpMutation.data?.success && <RetryCode />}
+        {authOtpMutation.data?.success && (
+          <RetryCode
+            retryDelay={retryDelay}
+            onRetry={() =>
+              authOtpMutation.mutateAsync({
+                data: {
+                  phone: authorizationForm.getValues('phone'),
+                },
+              })
+            }
+          />
+        )}
       </form>
     </main>
   );
