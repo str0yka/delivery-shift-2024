@@ -57,8 +57,8 @@ export const useCalculationPage = () => {
   const onSubmit = calculationForm.handleSubmit(
     ({ package: deliveryPackage, receiverPoint, senderPoint }) => {
       if (isDeliveryPackageValuesValid(deliveryPackage) && receiverPoint && senderPoint) {
-        setOrder((order) => ({
-          ...order,
+        setOrder((prevOrder) => ({
+          ...prevOrder,
           receiverPoint,
           senderPoint,
           package: deliveryPackage,
