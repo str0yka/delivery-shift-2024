@@ -1,6 +1,6 @@
 import { STEP } from './constants';
 import { OrderProvider, StepProvider, StepItem } from './contexts';
-import { CalculationPage, DeliveryMethodPage } from './steps';
+import { CalculationPage, DeliveryMethodPage, ReceiverFormPage } from './steps';
 
 export const ProcessingFlow = () => (
   <OrderProvider>
@@ -10,6 +10,9 @@ export const ProcessingFlow = () => (
       </StepItem>
       <StepItem step={STEP.DELIVERY_METHOD}>
         <DeliveryMethodPage />
+      </StepItem>
+      <StepItem step={STEP.RECEIVER}>
+        <ReceiverFormPage />
       </StepItem>
     </StepProvider>
   </OrderProvider>

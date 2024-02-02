@@ -1,37 +1,16 @@
-import { useEffect } from 'react';
-
 import { IconBus, IconPlane } from '~/components/ui/icons';
-import { useDeliveryCalcMutation } from '~/utils/api';
 import { cn } from '~/utils/helpers';
 
-import { STEP } from '../../constants';
-import { useOrder, useStep } from '../../contexts';
+import { useDeliveryMethodPage } from './hooks';
 
 export const DeliveryMethodPage = () => {
-  const { setStep } = useStep();
-  const { order } = useOrder();
-
-  const deliveryCalcMutation = useDeliveryCalcMutation();
-
-  useEffect(() => {
-    if (order.receiverPoint && order.senderPoint && order.package) {
-      deliveryCalcMutation.mutateAsync({
-        data: {
-          package: order.package,
-          receiverPoint: order.receiverPoint,
-          senderPoint: order.senderPoint,
-        },
-      });
-    } else {
-      setStep(STEP.CALCULATION);
-    }
-  }, [order]);
+  const { state, functions } = useDeliveryMethodPage();
 
   return (
     <main className="container mt-12">
       <h1 className="text-2xl font-bold">Профиль</h1>
       <div className="mt-6 flex gap-6">
-        {deliveryCalcMutation.data?.options.map((deliveryOption) => (
+        {state.deliveryCalcMutation.data?.options.map((deliveryOption) => (
           <button
             key={deliveryOption.id}
             type="button"
@@ -39,6 +18,7 @@ export const DeliveryMethodPage = () => {
               'group flex grow flex-col gap-6 rounded-3xl border border-extralight p-4 text-xs text-tertiary',
               'hover:bg-brand hover:text-invert',
             )}
+            onClick={() => functions.onClickDeliveryOption(deliveryOption)}
           >
             <div className="flex gap-4">
               <div
