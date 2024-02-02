@@ -1,34 +1,40 @@
 import { useForm } from 'react-hook-form';
 
 import { Button, Input } from '~/components/ui';
+import { useUser } from '~/utils/contexts';
 
 import { STEP } from '../../constants';
 import { OrderState, useOrder, useStep } from '../../contexts';
 
-type ReceiverFormValues = NonNullable<OrderState['order']['receiver']>;
+type SenderFormValues = NonNullable<OrderState['order']['sender']>;
 
-export const ReceiverFormPage = () => {
+export const SenderFormPage = () => {
+  const { user } = useUser();
+
   const { order, setOrder } = useOrder();
   const { setStep } = useStep();
 
-  const receiverForm = useForm<ReceiverFormValues>({
-    defaultValues: order.receiver,
+  const senderForm = useForm<SenderFormValues>({
+    defaultValues: {
+      ...order.sender,
+      phone: user!.phone,
+    },
   });
 
   return (
     <main className="container mt-12">
-      <h1 className="text-2xl font-bold">Получатель</h1>
+      <h1 className="text-2xl font-bold">Отправитель</h1>
       <form
         className="mt-6 flex max-w-[464px] flex-col gap-6"
-        onSubmit={receiverForm.handleSubmit((values) => {
-          setOrder((prevOrder) => ({ ...prevOrder, receiver: values }));
-          setStep(STEP.SENDER);
+        onSubmit={senderForm.handleSubmit((values) => {
+          setOrder((prevOrder) => ({ ...prevOrder, sender: { ...values, phone: user!.phone } }));
+          setStep(STEP.SENDER_ADDRESS);
         })}
       >
         <Input
           label="Фамилия"
           placeholder="Фамилия"
-          {...receiverForm.register('lastname', {
+          {...senderForm.register('lastname', {
             pattern: {
               value: /[a-zA-Zа-яА-Я\s`‘-]/g,
               message: 'Некорректный формат',
@@ -55,15 +61,15 @@ export const ReceiverFormPage = () => {
               return true;
             },
           })}
-          {...(receiverForm.formState.errors.lastname?.message && {
+          {...(senderForm.formState.errors.lastname?.message && {
             error: true,
-            helperText: receiverForm.formState.errors.lastname.message,
+            helperText: senderForm.formState.errors.lastname.message,
           })}
         />
         <Input
           label="Имя"
           placeholder="Имя"
-          {...receiverForm.register('firstname', {
+          {...senderForm.register('firstname', {
             pattern: {
               value: /[a-zA-Zа-яА-Я\s`‘-]/g,
               message: 'Некорректный формат',
@@ -90,15 +96,15 @@ export const ReceiverFormPage = () => {
               return true;
             },
           })}
-          {...(receiverForm.formState.errors.firstname?.message && {
+          {...(senderForm.formState.errors.firstname?.message && {
             error: true,
-            helperText: receiverForm.formState.errors.firstname.message,
+            helperText: senderForm.formState.errors.firstname.message,
           })}
         />
         <Input
           label="Отчество"
           placeholder="Отчество (при наличии)"
-          {...receiverForm.register('middlename', {
+          {...senderForm.register('middlename', {
             pattern: {
               value: /[a-zA-Zа-яА-Я\s`‘-]/g,
               message: 'Некорректный формат',
@@ -123,31 +129,23 @@ export const ReceiverFormPage = () => {
               return true;
             },
           })}
-          {...(receiverForm.formState.errors.middlename?.message && {
+          {...(senderForm.formState.errors.middlename?.message && {
             error: true,
-            helperText: receiverForm.formState.errors.middlename.message,
+            helperText: senderForm.formState.errors.middlename.message,
           })}
         />
         <Input
           type="number"
           label="Номер телефона"
           placeholder="Телефон"
-          {...receiverForm.register('phone', {
-            required: {
-              value: true,
-              message: 'Поле является обязательным',
-            },
-          })}
-          {...(receiverForm.formState.errors.phone && {
-            error: !!receiverForm.formState.errors.phone.message,
-            helperText: receiverForm.formState.errors.phone.message,
-          })}
+          disabled
+          value={user?.phone}
         />
         <div className="grid grid-cols-2 gap-6">
           <Button
             colour="secondary"
             variant="outline"
-            onClick={() => setStep(STEP.DELIVERY_METHOD)}
+            onClick={() => setStep(STEP.RECEIVER)}
           >
             Назад
           </Button>

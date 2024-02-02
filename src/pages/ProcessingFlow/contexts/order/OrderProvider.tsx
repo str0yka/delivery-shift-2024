@@ -9,6 +9,7 @@ interface OrderProviderProps {
 
 export const OrderProvider: React.FC<OrderProviderProps> = ({ children }) => {
   const [order, setOrder] = useState<OrderState['order']>({});
+  console.log(order);
 
   // eslint-disable-next-line react/jsx-no-constructed-context-values
   return <OrderContext.Provider value={{ order, setOrder }}>{children}</OrderContext.Provider>;
