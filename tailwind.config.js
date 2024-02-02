@@ -2,6 +2,17 @@
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
+    container: {
+      center: true,
+      screens: {
+        sm: '640px',
+        md: '768px',
+        lg: '960px',
+      },
+    },
+    backgroundImage: {
+      'home-texture': "url('/images/home-texture.jpg')",
+    },
     extend: {
       colors: {
         primary: {
@@ -58,7 +69,12 @@ export default {
         light: '#CED2DA',
         medium: '#97A1AF',
       },
+      outlineColor: {
+        extralight: '#E3E5E5',
+        light: '#CED2DA',
+        medium: '#97A1AF',
+      },
     },
   },
-  plugins: [],
+  plugins: [require('tailwindcss-animate')],
 };

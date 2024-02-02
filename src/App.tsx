@@ -1,31 +1,39 @@
-import { Input } from '~/components/ui';
+import { useState } from 'react';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
-export const App = () => (
-  <>
-    <Input
-      label="Label"
-      placeholder="Input Default"
-    />
-    <Input
-      placeholder="Input Default"
-      disabled
-    />
-    <Input
-      placeholder="Input Default"
-      error
-    />
-    <Input
-      label="Label"
-      helperText="Error message goes here"
-      placeholder="Input Default"
-      error
-      value="Input Default"
-    />
-    <button
-      className="border-light text-quartenery border"
-      type="button"
+import { LoadingPage } from '~/pages';
+import { privateRoutes, publicRoutes } from '~/router';
+import { useUsersSessionQuery } from '~/utils/api';
+import { UserProvider } from '~/utils/contexts';
+
+const publicRouter = createBrowserRouter(publicRoutes);
+const privateRouter = createBrowserRouter(privateRoutes);
+
+export const App = () => {
+  const [user, setUser] = useState<User | null>(null);
+
+  const usersSessionQuery = useUsersSessionQuery({
+    options: {
+      onSuccess: (data) => {
+        setUser(data.user);
+      },
+      retry: false,
+      refetchOnWindowFocus: false,
+      refetchOnMount: false,
+      refetchOnReconnect: false,
+    },
+  });
+
+  if (usersSessionQuery.isLoading) {
+    return <LoadingPage />;
+  }
+
+  return (
+    <UserProvider
+      user={user}
+      setUser={setUser}
     >
-      123
-    </button>
-  </>
-);
+      <RouterProvider router={user ? privateRouter : publicRouter} />
+    </UserProvider>
+  );
+};
