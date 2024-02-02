@@ -6,5 +6,5 @@ export type GetUsersSessionSuccessResponse = ApiSuccessResponse<{
   user: User;
 }>;
 
-export const getUsersSession = async (config?: AxiosRequestConfig<never>) =>
+export const getUsersSession = async (config?: AxiosRequestConfig) =>
   api.get<GetUsersSessionSuccessResponse>('/users/session', config).then((res) => res.data);

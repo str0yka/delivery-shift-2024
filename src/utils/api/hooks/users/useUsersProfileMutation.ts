@@ -3,17 +3,19 @@ import { useMutation } from 'react-query';
 import type { UseMutationOptions } from 'react-query';
 
 import { patchUsersProfile } from '../../requests';
-import type { PatchUsersProfileRequestBody, PatchUsersProfileResponse } from '../../requests';
+import type {
+  PatchUsersProfileRequestBody,
+  PatchUsersProfileSuccessResponse,
+} from '../../requests';
 
 export const useUsersProfileMutation = (
   options?: UseMutationOptions<
-    PatchUsersProfileResponse,
-    unknown,
+    PatchUsersProfileSuccessResponse,
+    ApiFailureResponse,
     {
       data: PatchUsersProfileRequestBody;
       config?: AxiosRequestConfig<PatchUsersProfileRequestBody>;
-    },
-    unknown
+    }
   >,
 ) =>
   useMutation({

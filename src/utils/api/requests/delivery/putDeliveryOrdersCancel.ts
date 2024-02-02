@@ -6,12 +6,12 @@ export interface PutDeliveryOrdersCancelRequestBody {
   orderId: string;
 }
 
-export type PutDeliveryOrdersCancelResponse = ApiSuccessResponse;
+export type PutDeliveryOrdersCancelSuccessResponse = ApiSuccessResponse;
 
 export const putDeliveryOrdersCancel = async (
   data: PutDeliveryOrdersCancelRequestBody,
   config?: AxiosRequestConfig<PutDeliveryOrdersCancelRequestBody>,
 ) =>
   api
-    .patch<PutDeliveryOrdersCancelResponse>('/delivery/orders/cancel', data, config)
+    .patch<PutDeliveryOrdersCancelSuccessResponse>('/delivery/orders/cancel', data, config)
     .then((res) => res.data);

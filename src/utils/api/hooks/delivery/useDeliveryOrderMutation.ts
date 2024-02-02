@@ -11,12 +11,11 @@ import type {
 export const useDeliveryOrderMutation = (
   options?: UseMutationOptions<
     PostDeliveryOrderSuccessResponse,
-    unknown,
+    ApiFailureResponse,
     {
       data: PostDeliveryOrderRequestBody;
       config?: AxiosRequestConfig<PostDeliveryOrderRequestBody>;
-    },
-    unknown
+    }
   >,
 ) =>
   useMutation({

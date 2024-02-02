@@ -23,7 +23,7 @@ const SelectTrigger = forwardRef<
       'placeholder:text-tertiary',
       'hover:border-indicator-light hover:bg-secondary',
       'focus:outline-none',
-      'disabled:cursor-not-allowed',
+      'disabled:cursor-not-allowed disabled:bg-disabled',
       'data-[state=open]:border-indicator-light data-[state=open]:bg-secondary',
       '[&>span]:line-clamp-1',
       className,

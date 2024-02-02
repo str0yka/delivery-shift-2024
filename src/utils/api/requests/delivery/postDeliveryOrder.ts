@@ -39,7 +39,7 @@ export interface PostDeliveryOrderRequestBody {
     middlename: string;
     phone: string;
   };
-  payer: 'RECEIVER';
+  payer: 'RECEIVER' | 'SENDER';
   option: {
     id: string;
     price: number;

@@ -1,0 +1,4 @@
+export enum STEP {
+  CALCULATION,
+  DELIVERY_METHOD,
+}

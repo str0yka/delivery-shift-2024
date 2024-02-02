@@ -4,5 +4,5 @@ import { api } from '../../instance';
 
 export type GetDeliveryPointsSuccessResponse = ApiSuccessResponse<{ points: DeliveryPoint[] }>;
 
-export const getDeliveryPoints = async (config?: AxiosRequestConfig<never>) =>
+export const getDeliveryPoints = async (config?: AxiosRequestConfig) =>
   api.get<GetDeliveryPointsSuccessResponse>('/delivery/points', config).then((res) => res.data);

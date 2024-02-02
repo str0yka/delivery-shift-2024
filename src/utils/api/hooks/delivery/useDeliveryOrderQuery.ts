@@ -9,8 +9,8 @@ interface UseDeliveryOrderQueryParams {
   data: {
     orderId: number;
   };
-  config?: AxiosRequestConfig<never>;
-  options?: UseQueryOptions<GetDeliveryOrderSuccessResponse>;
+  config?: AxiosRequestConfig;
+  options?: UseQueryOptions<GetDeliveryOrderSuccessResponse, ApiFailureResponse>;
 }
 
 export const useDeliveryOrderQuery = ({ data, config, options }: UseDeliveryOrderQueryParams) =>

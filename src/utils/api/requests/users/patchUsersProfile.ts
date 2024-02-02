@@ -7,9 +7,12 @@ export interface PatchUsersProfileRequestBody {
   phone: string;
 }
 
-export type PatchUsersProfileResponse = ApiSuccessResponse;
+export type PatchUsersProfileSuccessResponse = ApiSuccessResponse;
 
 export const patchUsersProfile = async (
   data: PatchUsersProfileRequestBody,
   config?: AxiosRequestConfig<PatchUsersProfileRequestBody>,
-) => api.patch<PatchUsersProfileResponse>('/users/profile', data, config).then((res) => res.data);
+) =>
+  api
+    .patch<PatchUsersProfileSuccessResponse>('/users/profile', data, config)
+    .then((res) => res.data);

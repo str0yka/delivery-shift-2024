@@ -6,13 +6,13 @@ import { getUsersSession } from '../../requests';
 import type { GetUsersSessionSuccessResponse } from '../../requests';
 
 interface UseUsersSessionQueryParams {
-  config?: AxiosRequestConfig<never>;
-  options?: UseQueryOptions<GetUsersSessionSuccessResponse>;
+  config?: AxiosRequestConfig;
+  options?: UseQueryOptions<GetUsersSessionSuccessResponse, ApiFailureResponse>;
 }
 
-export const useUsersSessionQuery = ({ config, options }: UseUsersSessionQueryParams) =>
+export const useUsersSessionQuery = (params?: UseUsersSessionQueryParams) =>
   useQuery({
     queryKey: ['GetUsersSession'],
-    ...options,
-    queryFn: () => getUsersSession(config),
+    ...params?.options,
+    queryFn: () => getUsersSession(params?.config),
   });

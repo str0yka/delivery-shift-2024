@@ -12,8 +12,7 @@ export const useUsersSigninMutation = (
     {
       data: PostUsersSigninRequestBody;
       config?: AxiosRequestConfig<PostUsersSigninRequestBody>;
-    },
-    unknown
+    }
   >,
 ) =>
   useMutation({

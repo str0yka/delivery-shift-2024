@@ -6,9 +6,9 @@ export interface PostAuthOtpRequestBody {
   phone: string;
 }
 
-export type PostAuthOtpResponse = ApiSuccessResponse<{ retryDelay: number }>;
+export type PostAuthOtpSuccessResponse = ApiSuccessResponse<{ retryDelay: number }>;
 
 export const postAuthOtp = async (
   data: PostAuthOtpRequestBody,
   config?: AxiosRequestConfig<PostAuthOtpRequestBody>,
-) => api.post<PostAuthOtpResponse>('/auth/otp', data, config).then((res) => res.data);
+) => api.post<PostAuthOtpSuccessResponse>('/auth/otp', data, config).then((res) => res.data);

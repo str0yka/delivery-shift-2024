@@ -6,13 +6,13 @@ import { getDeliveryOrders } from '../../requests';
 import type { GetDeliveryOrdersSuccessResponse } from '../../requests';
 
 interface UseDeliveryOrdersQueryParams {
-  config?: AxiosRequestConfig<never>;
-  options?: UseQueryOptions<GetDeliveryOrdersSuccessResponse>;
+  config?: AxiosRequestConfig;
+  options?: UseQueryOptions<GetDeliveryOrdersSuccessResponse, ApiFailureResponse>;
 }
 
-export const useDeliveryOrdersQuery = ({ config, options }: UseDeliveryOrdersQueryParams) =>
+export const useDeliveryOrdersQuery = (params?: UseDeliveryOrdersQueryParams) =>
   useQuery({
     queryKey: ['GetDeliveryOrders'],
-    ...options,
-    queryFn: () => getDeliveryOrders(config),
+    ...params?.options,
+    queryFn: () => getDeliveryOrders(params?.config),
   });

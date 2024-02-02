@@ -6,16 +6,13 @@ import { getDeliveryPackageTypes } from '../../requests';
 import type { GetDeliveryPackageTypesSuccessResponse } from '../../requests';
 
 interface UseDeliveryPackageTypesQueryParams {
-  config?: AxiosRequestConfig<never>;
-  options?: UseQueryOptions<GetDeliveryPackageTypesSuccessResponse>;
+  config?: AxiosRequestConfig;
+  options?: UseQueryOptions<GetDeliveryPackageTypesSuccessResponse, ApiFailureResponse>;
 }
 
-export const useDeliveryPackageTypesQuery = ({
-  config,
-  options,
-}: UseDeliveryPackageTypesQueryParams) =>
+export const useDeliveryPackageTypesQuery = (params?: UseDeliveryPackageTypesQueryParams) =>
   useQuery({
     queryKey: ['GetDeliveryPackageTypes'],
-    ...options,
-    queryFn: () => getDeliveryPackageTypes(config),
+    ...params?.options,
+    queryFn: () => getDeliveryPackageTypes(params?.config),
   });

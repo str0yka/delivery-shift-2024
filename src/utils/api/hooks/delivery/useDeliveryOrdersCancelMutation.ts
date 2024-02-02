@@ -5,18 +5,17 @@ import type { UseMutationOptions } from 'react-query';
 import { putDeliveryOrdersCancel } from '../../requests';
 import type {
   PutDeliveryOrdersCancelRequestBody,
-  PutDeliveryOrdersCancelResponse,
+  PutDeliveryOrdersCancelSuccessResponse,
 } from '../../requests';
 
 export const useDeliveryOrdersCancelMutation = (
   options?: UseMutationOptions<
-    PutDeliveryOrdersCancelResponse,
-    unknown,
+    PutDeliveryOrdersCancelSuccessResponse,
+    ApiFailureResponse,
     {
       data: PutDeliveryOrdersCancelRequestBody;
       config?: AxiosRequestConfig<PutDeliveryOrdersCancelRequestBody>;
-    },
-    unknown
+    }
   >,
 ) =>
   useMutation({

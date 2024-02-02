@@ -1,7 +1,7 @@
 import { Navigate, RouteObject } from 'react-router-dom';
 
 import { Layout } from '~/components';
-import { ProfilePage, AuthorizationPage, HistoryPage, HomePage, LogoutPage } from '~/pages';
+import { ProfilePage, AuthorizationPage, HistoryPage, ProcessingFlow, LogoutPage } from '~/pages';
 import { ROUTE } from '~/utils/constants';
 
 export const privateRoutes: RouteObject[] = [
@@ -12,7 +12,7 @@ export const privateRoutes: RouteObject[] = [
     children: [
       {
         index: true,
-        element: <HomePage />,
+        element: <ProcessingFlow />,
       },
       {
         path: ROUTE.PROFILE,

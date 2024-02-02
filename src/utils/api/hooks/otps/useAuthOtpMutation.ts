@@ -3,17 +3,16 @@ import { useMutation } from 'react-query';
 import type { UseMutationOptions } from 'react-query';
 
 import { postAuthOtp } from '../../requests';
-import type { PostAuthOtpRequestBody, PostAuthOtpResponse } from '../../requests';
+import type { PostAuthOtpRequestBody, PostAuthOtpSuccessResponse } from '../../requests';
 
 export const useAuthOtpMutation = (
   options?: UseMutationOptions<
-    PostAuthOtpResponse,
-    unknown,
+    PostAuthOtpSuccessResponse,
+    ApiFailureResponse,
     {
       data: PostAuthOtpRequestBody;
       config?: AxiosRequestConfig<PostAuthOtpRequestBody>;
-    },
-    unknown
+    }
   >,
 ) =>
   useMutation({

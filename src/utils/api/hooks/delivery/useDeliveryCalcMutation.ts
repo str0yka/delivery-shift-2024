@@ -8,12 +8,11 @@ import type { PostDeliveryCalcRequestBody, PostDeliveryCalcSuccessResponse } fro
 export const useDeliveryCalcMutation = (
   options?: UseMutationOptions<
     PostDeliveryCalcSuccessResponse,
-    unknown,
+    ApiFailureResponse,
     {
       data: PostDeliveryCalcRequestBody;
-      config: AxiosRequestConfig<PostDeliveryCalcRequestBody>;
-    },
-    unknown
+      config?: AxiosRequestConfig<PostDeliveryCalcRequestBody>;
+    }
   >,
 ) =>
   useMutation({
