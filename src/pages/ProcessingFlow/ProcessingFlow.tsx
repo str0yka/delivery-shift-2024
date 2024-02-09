@@ -7,6 +7,7 @@ import {
   PayerFormPage,
   ReceiverAddressFormPage,
   ReceiverFormPage,
+  SendOrderPage,
   SenderAddressFormPage,
   SenderFormPage,
 } from './steps';
@@ -37,6 +38,9 @@ export const ProcessingFlow = () => (
       </StepItem>
       <StepItem step={STEP.CHECK_ORDER}>
         <CheckOrderPage />
+      </StepItem>
+      <StepItem step={STEP.SEND_ORDER}>
+        <SendOrderPage />
       </StepItem>
     </StepProvider>
   </OrderProvider>

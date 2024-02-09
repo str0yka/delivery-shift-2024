@@ -99,6 +99,10 @@ export const ReceiverAddressFormPage = () => {
           label="Номер квартиры"
           placeholder="Квартира"
           {...receiverAddressForm.register('appartament', {
+            required: {
+              value: true,
+              message: 'Поле является обязательным',
+            },
             pattern: {
               value: /[a-zA-Zа-яА-Я\d\s“,/`‘:;-_.,#]/g,
               message: 'Некорректный формат',

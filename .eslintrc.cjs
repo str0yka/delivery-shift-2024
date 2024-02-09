@@ -28,6 +28,7 @@ module.exports = {
   },
   plugins: ['react'],
   rules: {
+    'react/no-array-index-key': 0,
     'import/prefer-default-export': 0,
     'react-hooks/exhaustive-deps': 0,
     '@typescript-eslint/no-misused-promises': 0,

@@ -77,13 +77,14 @@ export const CheckOrderPage = () => {
             className="w-[328px]"
             colour="secondary"
             variant="outline"
-            onClick={() => setStep(STEP.RECEIVER_ADDRESS)}
+            onClick={() => setStep(STEP.PAYER)}
           >
             Назад
           </Button>
           <Button
             className="w-[328px]"
             type="submit"
+            onClick={() => setStep(STEP.SEND_ORDER)}
           >
             Продолжить
           </Button>

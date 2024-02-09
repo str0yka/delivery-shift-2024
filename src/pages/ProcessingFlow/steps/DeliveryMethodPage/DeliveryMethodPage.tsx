@@ -8,7 +8,7 @@ export const DeliveryMethodPage = () => {
 
   return (
     <main className="container mt-12">
-      <h1 className="text-2xl font-bold">Профиль</h1>
+      <h1 className="text-2xl font-bold">Способ отправки</h1>
       <div className="mt-6 flex gap-6">
         {state.deliveryCalcMutation.data?.options.map((deliveryOption) => (
           <button

@@ -6,3 +6,4 @@ export * from './ReceiverAddressFormPage/ReceiverAddressFormPage';
 export * from './SenderAddressFormPage/SenderAddressFormPage';
 export * from './PayerFormPage/PayerFormPage';
 export * from './CheckOrderPage/CheckOrderPage';
+export * from './SendOrderPage/SendOrderPage';

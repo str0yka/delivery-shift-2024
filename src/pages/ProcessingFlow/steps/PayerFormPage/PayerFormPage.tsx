@@ -16,7 +16,7 @@ export const PayerFormPage = () => {
 
   const payerForm = useForm<PayerFormValues>({
     defaultValues: {
-      payer: order.payer,
+      payer: order.payer ?? PAYER.SENDER,
     },
   });
   const payerFormWatchFields = payerForm.watch();
