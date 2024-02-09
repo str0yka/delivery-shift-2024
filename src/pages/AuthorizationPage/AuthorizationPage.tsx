@@ -1,85 +1,46 @@
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
-
 import { Button, Input } from '~/components/ui';
-import { useAuthOtpMutation, useUsersSigninMutation } from '~/utils/api';
-import { LOCAL_STORAGE_KEY, ROUTE } from '~/utils/constants';
-import { useUser } from '~/utils/contexts';
 
 import { RetryCode } from './components';
-
-interface AuthorizationFormValues {
-  phone: string;
-  code: number;
-}
+import { useAuthorizationPage } from './hooks';
 
 export const AuthorizationPage = () => {
-  const navigate = useNavigate();
-  const { setUser } = useUser();
-
-  const [retryDelay, setRetryDelay] = useState<number | null>(null);
-
-  const authorizationForm = useForm<AuthorizationFormValues>();
-
-  const authOtpMutation = useAuthOtpMutation({
-    onSuccess: (data) => {
-      setRetryDelay(data.retryDelay);
-    },
-  });
-  const usersSigninMutation = useUsersSigninMutation({
-    onSuccess: (data) => {
-      localStorage.setItem(LOCAL_STORAGE_KEY.TOKEN, data.token);
-      setUser(data.user);
-      navigate(ROUTE.HOME);
-    },
-  });
+  const { state, functions } = useAuthorizationPage();
 
   return (
     <main className="container mt-12">
       <h1 className="text-2xl font-bold">Вход</h1>
       <form
         className="mt-6 flex flex-col gap-6"
-        onSubmit={authorizationForm.handleSubmit(({ phone, code }) => {
-          if (authOtpMutation.data?.success) {
-            usersSigninMutation.mutateAsync({
-              data: { phone, code },
-            });
-          } else {
-            authOtpMutation.mutateAsync({
-              data: { phone },
-            });
-          }
-        })}
+        onSubmit={functions.onSubmit}
       >
         <div className="grid grid-cols-2 gap-6">
           <div className="flex grow flex-col gap-6">
-            {!authOtpMutation.data?.success && (
+            {!state.authOtpMutation.data?.success && (
               <span>Введите номер телефона для входа в личный кабинет</span>
             )}
-            {authOtpMutation.data?.success && (
+            {state.authOtpMutation.data?.success && (
               <span>Введите проверочный код для входа в личный кабинет</span>
             )}
             <Input
               type="number"
               placeholder="Номер телефона"
-              disabled={authOtpMutation.isLoading || authOtpMutation.data?.success}
-              {...authorizationForm.register('phone', {
+              disabled={state.authOtpMutation.isLoading || state.authOtpMutation.data?.success}
+              {...state.authorizationForm.register('phone', {
                 required: {
                   value: true,
                   message: 'Поле является обязательным',
                 },
               })}
-              {...(authorizationForm.formState.errors.phone && {
-                error: !!authorizationForm.formState.errors.phone.message,
-                helperText: authorizationForm.formState.errors.phone.message,
+              {...(state.authorizationForm.formState.errors.phone && {
+                error: !!state.authorizationForm.formState.errors.phone.message,
+                helperText: state.authorizationForm.formState.errors.phone.message,
               })}
             />
-            {authOtpMutation.data?.success && (
+            {state.authOtpMutation.data?.success && (
               <Input
                 type="number"
                 placeholder="Проверочный код"
-                {...authorizationForm.register('code', {
+                {...state.authorizationForm.register('code', {
                   valueAsNumber: true,
                   required: {
                     value: true,
@@ -92,9 +53,9 @@ export const AuthorizationPage = () => {
                     return true;
                   },
                 })}
-                {...(authorizationForm.formState.errors.code && {
-                  error: !!authorizationForm.formState.errors.code.message,
-                  helperText: authorizationForm.formState.errors.code.message,
+                {...(state.authorizationForm.formState.errors.code && {
+                  error: !!state.authorizationForm.formState.errors.code.message,
+                  helperText: state.authorizationForm.formState.errors.code.message,
                 })}
               />
             )}
@@ -104,18 +65,12 @@ export const AuthorizationPage = () => {
           className="w-80 self-start"
           type="submit"
         >
-          {authOtpMutation.data?.success ? 'Войти' : 'Продолжить'}
+          {state.authOtpMutation.data?.success ? 'Войти' : 'Продолжить'}
         </Button>
-        {authOtpMutation.data?.success && (
+        {state.authOtpMutation.data?.success && (
           <RetryCode
-            retryDelay={retryDelay}
-            onRetry={() =>
-              authOtpMutation.mutateAsync({
-                data: {
-                  phone: authorizationForm.getValues('phone'),
-                },
-              })
-            }
+            retryDelay={state.retryDelay}
+            onRetry={functions.onRetryCode}
           />
         )}
       </form>
